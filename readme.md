@@ -1,7 +1,7 @@
 ![cover](https://github.com/user-attachments/assets/afbde9e1-eb0e-4296-ba79-d59ccc8767b7)
 
 
-# YouTube Downloader
+# Media Downloader Classic
 
 
 A minimalist YouTube Downloader built with Qt, allowing users to easily download videos from YouTube.
