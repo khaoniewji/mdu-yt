@@ -1,3 +1,2 @@
-appversion = "2024.11.01"
-ytdlp_version = "2024.10.07"
+appversion = "2024.12.22"
 appname = "Media Downloader Utility"

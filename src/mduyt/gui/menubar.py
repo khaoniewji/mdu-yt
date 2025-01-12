@@ -1,7 +1,10 @@
-from PySide6.QtWidgets import QMenuBar, QMenu
+from PySide6.QtWidgets import QMenuBar, QMenu,QMessageBox,QProgressDialog, QApplication
 from PySide6.QtGui import QIcon, QAction
-from PySide6.QtCore import Qt
-
+from PySide6.QtCore import Qt,QTimer
+from env import root
+import sys 
+import os
+import requests
 class MenuBar(QMenuBar):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -48,8 +51,6 @@ class MenuBar(QMenuBar):
         check_updates = QAction(QIcon(":/icons/update.png"), "Check for &Updates", self)
         check_updates.triggered.connect(self.parent.check_for_updates)
         help_menu.addAction(check_updates)
-
-
 # def new_download(self):
 #     # Implement new download functionality
 #     pass

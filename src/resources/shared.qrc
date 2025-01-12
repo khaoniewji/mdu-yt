@@ -7,5 +7,8 @@
         <file>folder.svg</file>
         <file>style.qss</file>
         <file>splash.png</file>
+        <file>splash_new.png</file>
+        <file>splash_new_2.png</file>
+        <file>splash_new_3.png</file>
     </qresource>
 </RCC>

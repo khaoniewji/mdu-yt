@@ -8,23 +8,38 @@ from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
                                QLineEdit, QPushButton, QProgressBar, QLabel, QRadioButton,
                                QComboBox, QButtonGroup, QFileDialog, QMessageBox, QListView,
                                QStyledItemDelegate, QStatusBar, QStyle, QMenu, QDialog, QCheckBox, QSpinBox)
-from PySide6.QtCore import Qt, Slot, QSize, QPoint, QObject, Signal, __version__
+from PySide6.QtCore import Qt, Slot, QSize, QPoint, __version__
 from PySide6.QtGui import QStandardItemModel, QStandardItem, QIcon, QPalette, QColor, QAction
 from src.mduyt.core.downloader import Downloader
 from src.mduyt.gui.menubar import MenuBar
 from src.mduyt.gui.multipledownloaddialog import MultipleDownloadDialog
 from src.mduyt.core.updater import GitHubUpdater
-from src.mduyt.utils.version import appversion, appname, ytdlp_version
+from src.mduyt.utils.version import appversion, appname
 from pathlib import Path
 from src.mduyt.data.donator import donators
-# from ui_mainwindow import Ui_MainWindow
-
 
 def normalize_path(path):
     return path.replace(os.sep, '/')
 
 def windows_path(path):
     return path.replace('/', '\\')
+
+def get_app_dir():
+    """Get application directory"""
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+def load_info():
+    """Load info from info.json"""
+    try:
+        info_path = os.path.join(get_app_dir(), 'info.json')
+        if os.path.exists(info_path):
+            with open(info_path, 'r') as f:
+                return json.load(f)
+    except Exception:
+        pass
+    return {"appversion": appversion, "ytdlpversion": "Unknown"}
 
 class HoverButton(QPushButton):
     def __init__(self, parent=None):
@@ -237,13 +252,7 @@ class MainWindow(QMainWindow):
 
         option_layout.addStretch()
         layout.addLayout(option_layout)
-
-        # self.setup_encoding_options(option_layout)
-        # encoding_layout = QHBoxLayout()
-        # self.setup_encoding_options(encoding_layout)
-        # layout.addLayout(encoding_layout)
        
-
         # Add stop button
         self.stop_button = QPushButton("Stop")
         self.stop_button.clicked.connect(self.stop_download)
@@ -428,10 +437,26 @@ class MainWindow(QMainWindow):
         # Implement preferences dialog
         QMessageBox.information(self, "Preferences", "Preferences dialog not implemented yet.")
 
+    def load_info():
+        """Load info from info.json"""
+        try:
+            info_path = os.path.join(get_app_dir(), 'info.json')
+            if os.path.exists(info_path):
+                with open(info_path, 'r') as f:
+                    return json.load(f)
+        except Exception:
+            pass
+        return {"appversion": "1.0.0", "ytdlpversion": "Unknown"}
+
+
     def show_about_dialog(self):
 
         # Create the donator text with each name on a new line, wrapped in <b> tags for bold
         donator_text = "<br>".join([f"{donator}" for donator in donators])
+        appname = "MDU YouTube Downloader"
+        info = load_info()
+        ytdlp_version = info.get('ytdlpversion', 'Unknown')
+
 
         # Prepare the message box content using HTML formatting
         about_message = (

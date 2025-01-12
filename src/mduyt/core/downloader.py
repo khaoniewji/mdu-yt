@@ -8,8 +8,6 @@ from PySide6.QtCore import QObject, Signal
 from pathlib import Path
 from env import root
 import unicodedata
-# import yt_dlp
-# import json  # Make sure to import the json module
 
 class DownloaderSignals(QObject):
     progress = Signal(float, str, str, str, int, int)

@@ -2,7 +2,7 @@
 
 ; Define constants
 !define APPNAME "Media Downloader Utility"
-!define APPVERSION "2024.10.10"
+!define APPVERSION "2024.12.22"
 !define INSTALLDIR "$LOCALAPPDATA\kaoniewji\Media Downloader Utility"
 
 ; Include necessary NSIS headers
@@ -10,7 +10,7 @@
 
 ; General settings
 Name "${APPNAME}"
-OutFile "mduinstall-20241010.exe"
+OutFile "mduinstall-20241222-LTS.exe"
 InstallDir "${INSTALLDIR}"
 RequestExecutionLevel user
 
@@ -31,7 +31,7 @@ Section "Install"
     DetailPrint "Installing, please wait..."
 
     ; Copy all files from the build directory
-    File /r "build\exe.win-amd64-3.12\*"
+    File /r "dist\mdu\*"
 
     ; Create shortcuts
     CreateDirectory "$SMPROGRAMS\${APPNAME}"

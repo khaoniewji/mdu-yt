@@ -1,5 +1,6 @@
 
 build
+dist
 download_history.json
 buildnumber.json
 history.json
@@ -10,3 +11,5 @@ __pycache__/
 #linux and macos venv
 venv
 src/core/ytdlp
+deployment
+info.json

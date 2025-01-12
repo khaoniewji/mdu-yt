@@ -11,7 +11,7 @@ Compression=lzma2
 SolidCompression=yes
 
 [Files]
-Source: "..\..\build\exe.win-amd64-3.12\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\..\dist\mdu\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\Youtube Downloader"; Filename: "{app}\mdu.exe"

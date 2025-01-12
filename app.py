@@ -55,7 +55,7 @@ setup(
 if current_platform == "darwin":
     from setuptools import setup
 
-    APP = ['mdu.py']
+    APP = ['main.py']
     DATA_FILES = bin_include  # Include macOS-specific binaries
     OPTIONS = {
         'argv_emulation': True,

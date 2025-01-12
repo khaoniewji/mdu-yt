@@ -3,5 +3,6 @@ donators = [
         "Jeerapong Thipwajana",
         "Raksit Sona",
         "DoubleUU",
-        "Gara Guide"
+        "Gara Guide",
+        "CFableMusic"
 ]
